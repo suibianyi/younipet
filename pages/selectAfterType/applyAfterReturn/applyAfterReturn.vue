@@ -173,6 +173,8 @@
 					mediaType: 'image',
 					success(res) {
 						// TODO 上传图片
+						
+						console.log('上传的图片是', res)
 					},
 					fail() {
 						uni.openSetting()
@@ -200,6 +202,7 @@
 					refundDesc: this.formData.desc,
 					refundType: this.formData.reason,
 					refundImg: this.formData.images
+					// refundType: this.refundType
 				})
 			}
 		}
