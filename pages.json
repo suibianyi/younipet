@@ -1,0 +1,352 @@
+{
+	"easycom": {
+	    "^u-(.*)": "@/uni_modules/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "有你宠物"
+			}
+		},
+		{
+			"path": "pages/index/authorize/authorize",
+			"style": {
+				"navigationBarTitleText": "授权登录"
+			}
+		},
+		{
+			"path": "pages/person/person",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+		}
+	    ,{
+            "path" : "pages/active/active",
+            "style" :                                                                                    
+            {
+				"navigationBarTitleText": "活动列表"
+            }
+            
+        }
+        ,{
+            "path" : "pages/active/activeDetail/activeDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "活动详情"
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/becomeVip/becomeVip",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "成为会员"
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/pickUpAtStore/pickUpAtStore",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "到店自取"
+            }
+            
+        }
+        ,{
+            "path" : "pages/index/service/service",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "服务列表"
+            }
+            
+        }
+        ,{
+            "path" : "pages/product/product",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "产品列表"
+            }
+            
+        }
+        ,{
+            "path" : "pages/appointment/appointment",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "服务预约"
+            }
+            
+        }
+        ,{
+            "path" : "pages/productGoodsDetail/productGoodsDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "产品详情"
+            }
+            
+        }
+        ,{
+            "path" : "pages/storeIndex/storeIndex",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "门店首页"
+            }
+            
+        }
+        ,{
+            "path" : "pages/storeIndex/moreGoods/moreGoods",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "更多推荐"
+            }
+            
+        }
+        ,{
+            "path" : "pages/serviceGoodsDetail/serviceGoodsDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "服务详情"
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/address/address",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "收货地址"
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editAddress/editAddress",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑地址"
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editPerson/editPerson",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑资料",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editPerson/editName/editName",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改昵称",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+		,{
+		    "path" : "pages/person/myActive/myActive",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "我的活动"
+		    }
+		    
+		}
+		,{
+		    "path" : "pages/person/couponCenter/couponCenter",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "领券中心",
+		        "enablePullDownRefresh": false
+		    }
+		}
+        ,{
+            "path" : "pages/person/editPerson/editPassword/editPassword",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "修改交易密码",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/becomeShareholder/becomeShareholder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "成为股东",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/orderList/orderList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "我的订单"
+            }
+            
+        }
+        ,{
+            "path" : "pages/orderList/orderDetail/orderDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "订单详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/afterSalesList/afterSalesList",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "退款/售后",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/selectAfterType/selectAfterType",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "选择售后类型",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/selectAfterType/applyAfterReturn/applyAfterReturn",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "退款申请",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/afterSalesList/returnAfterDetail/returnAfterDetail",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "退款详情",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/afterSalesList/writeLogistics/writeLogistics",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "填写单号",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/logisticsHitory/logisticsHitory",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "物流信息",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/orderList/confirmOrder/confirmOrder",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "确认订单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/orderList/confirmCar/confirmCar",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "确认订单",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/carIndex/carIndex",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "购物车"
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editPet/editPet",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑宠物",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editPet/editName/editName",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "编辑宠物昵称",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/editPet/editVarieties/editVarieties",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "品种选择",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/person/historyActive/historyActive",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "预约记录"
+            }
+            
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "有你宠物",
+		"navigationBarBackgroundColor": "#ffffff",
+		"backgroundColor": "#F8F8F8"
+	},
+	"tabBar": {
+		"color": "#B9B9B9",
+		"selectedColor": "#444444",
+		"borderStyle": "black",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/image/tabbar/icon-1.png",
+			"selectedIconPath": "static/image/tabbar/icon-1-active.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/product/product",
+			"iconPath": "static/image/tabbar/icon-2.png",
+			"selectedIconPath": "static/image/tabbar/icon-2-active.png",
+			"text": "产品"
+		}, {
+			"pagePath": "pages/active/active",
+			"iconPath": "static/image/tabbar/icon-3.png",
+			"selectedIconPath": "static/image/tabbar/icon-3-active.png",
+			"text": "活动"
+		}, {
+			"pagePath": "pages/carIndex/carIndex",
+			"iconPath": "static/image/tabbar/icon-4.png",
+			"selectedIconPath": "static/image/tabbar/icon-4-active.png",
+			"text": "购物车"
+		}, {
+			"pagePath": "pages/person/person",
+			"iconPath": "static/image/tabbar/icon-5.png",
+			"selectedIconPath": "static/image/tabbar/icon-5-active.png",
+			"text": "我的"
+		}]
+	},
+	"uniIdRouter": {}
+}

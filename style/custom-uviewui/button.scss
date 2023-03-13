@@ -1,0 +1,30 @@
+
+.u-button {
+	font-weight: bold;
+}
+.u-button--primary {
+	background-color: $main-color !important;
+	color: $text-color !important;
+	border-color: $main-color !important;
+}
+
+.u-button--mini {
+	height: 48rpx !important;
+	width: 134rpx !important;
+	border-radius: 200rpx;
+	font-size: 24rpx;
+}
+
+.u-button--small {
+	height: 64rpx !important;
+	font-size: 28rpx !important;
+}
+
+.u-button--large {
+	height: 92rpx !important;
+	font-size: 32rpx !important;
+}
+
+.u-button--info {
+	border-color: $text-color !important;
+}
