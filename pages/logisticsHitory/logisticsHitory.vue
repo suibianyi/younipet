@@ -25,6 +25,8 @@
 </template>
 
 <script>
+import { onLoad } from '../../uni_modules/uview-ui/libs/mixin/mixin';
+import { expressTrace } from '@/server/api.js'
 	export default {
 		data() {
 			return {
@@ -58,6 +60,21 @@
 					}
 				],
 			};
+		},
+		async onLoad(options) {
+			console.log('物流页面收到的', options.detail)
+			const temp = JSON.parse(options.detail)
+			this.logisticsNumber = temp.postNo
+			this.logisticsCompany = temp.express
+			this.goodsList = temp.goodsList
+			const res = await expressTrace({ custom: { auth: true }, params:{com: temp.expressCode, num: temp.postNo}})
+			this.list = []
+			for (const item of res.data) {
+				this.list.push({
+					time: item.time,
+					desc: item.context
+				})
+			}
 		}
 	}
 </script>

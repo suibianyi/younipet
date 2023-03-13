@@ -85,6 +85,7 @@
 <script>
 	import SelectPopup from '@/components/SelectPopup/SelectPopup.vue';
 	import OrderGoodsItem from '@/components/OrderGoodsItem/OrderGoodsItem.vue';
+	import { orderRefund } from '@/server/api.js'
 	const cargoStatusMap = {
 		1: '已收到货',
 		2: '未收到货'
@@ -96,6 +97,7 @@
 		},
 		data() {
 			return {
+				orderNo:'',
 				refundType: '',
 				goodsList: [
 					{
@@ -151,8 +153,17 @@
 			}
 		},
 		onLoad (options) {
-			this.refundType = options.refundType;
+			console.log('退款页面2收到的', options.detail)
+			const temp = JSON.parse(options.detail)
+			this.refundType = temp.refundType;
+			this.goodsList = temp.goodsList
 			console.log(this.refundType)
+			this.orderData.freight = 0
+			this.orderData.realPrice = 0
+			for(const item of this.goodsList) {
+				this.orderData.realPrice+=parseInt(item.price)
+			}
+			this.orderNo = temp.orderNo
 		},
 		methods: {
 			// 选择视频上传
@@ -182,6 +193,14 @@
 			},
 			getReason (value) {
 				this.formData.reason = value;
+			},
+			async onEdit() {
+				await orderRefund({
+					orderId: this.orderNo,
+					refundDesc: this.formData.desc,
+					refundType: this.formData.reason,
+					refundImg: this.formData.images
+				})
 			}
 		}
 	}

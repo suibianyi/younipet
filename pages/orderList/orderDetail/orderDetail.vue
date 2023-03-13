@@ -63,6 +63,7 @@
 					>联系商家</u-button>
 				</view>
 				<view class="button-item">
+					<button plain open-type='contact' session-from=''>
 					<u-button
 						type="default"
 						plain
@@ -72,6 +73,7 @@
 							width: '200rpx'
 						}"
 					>联系客服</u-button>
+					</button>
 				</view>
 				<view class="button-item" @click="toReturn" v-if="checkRenderBtn('refund')">
 					<u-button
@@ -185,6 +187,7 @@
 					:customStyle="{
 						width: '200rpx'
 					}"
+					@click="confirmGet(orderDetail)"
 				>确认收货</u-button>
 			</view>
 		</view>
@@ -193,7 +196,7 @@
 
 <script>
 	import OrderGoodsItem from '@/components/OrderGoodsItem/OrderGoodsItem.vue'
-	import { orderDetail } from '@/server/api.js'
+	import { orderDetail, orderReceive } from '@/server/api.js'
 	export default {
 		components: {
 			OrderGoodsItem
@@ -210,20 +213,27 @@
 					detail: res.address.address
 				}
 			}
-			if (res&&res.store) {
+			if(res.type ==1) {
 				this.status =3
+			} else {
+				this.status =4
+			}
+			if (res&&res.store) {
 				this.storeData ={
 					storeName: res.store.storeName,
 					storeAddress: res.store.storeLocation
 				}
-			} else {
-				this.status =4
 			}
 			this.orderDetail.orderNo=res.id
 			this.orderDetail.exchangeNo=res.pid
 			this.orderDetail.createTime=res.createTime
 			this.orderDetail.payTime=res.payTime
 			this.orderDetail.deliverTime=res.shipTime
+			this.orderDetail.expressCode=res.expressCode
+			this.orderDetail.express=res.express
+			this.orderDetail.postNo=res.postNo
+			this.orderDetail.logisticsTime=res.shipTime
+			this.orderDetail.notes=res.rmk
 			if (res&& res.detailList) {
 				this.orderDetail.goodsList =[]
 				console.log('123456798',res.detailList)
@@ -239,6 +249,7 @@
 			}
 			// this.status = status;
 			this.orderId = orderId;
+			
 		},
 		data() {
 			return {
@@ -289,7 +300,7 @@
 					payTime: '2021-1-12 15:20:15',
 					deliverTime: '2021-1-12 15:20:15',
 					notes: '备注',
-					freight: '11',
+					freight: '0',
 					goodsList: [
 						{
 							goodsImage: require('@/static/image/goods-image.png'),
@@ -320,14 +331,23 @@
 			},
 			toReturn () {
 				uni.navigateTo({
-					url: '/pages/selectAfterType/selectAfterType'
+					url: '/pages/selectAfterType/selectAfterType?detail='+JSON.stringify(this.orderDetail)
 				})
 			},
 			toLogisticsHitory (data) {
-				console.log('查看物流信息', data)
+				console.log('查看物流信息', this.orderDetail)
 				uni.navigateTo({
-					url: '/pages/logisticsHitory/logisticsHitory'
+					url: '/pages/logisticsHitory/logisticsHitory?detail='+JSON.stringify(this.orderDetail)
 				})
+			},
+			async confirmGet(data) {
+				await orderReceive({ custom: { auth: true }, params:{id: data.id}})
+				uni.showToast({
+					title: "确认收货成功"
+				})
+				// uni.navigateTo({
+				// 	url: '/pages/selectAfterType/selectAfterType'
+				// })
 			}
  		}
 	}

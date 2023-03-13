@@ -101,3 +101,7 @@ export const storeList = (data) => http.get('/pet/store/list', data)
 
 // 查询物流信息
 export const expressTrace = (data) => http.get('/pet/order/expressTrace', data)
+// 确认收货
+export const orderReceive = (data) => http.get('/pet/order/receive', data)
+// 退款
+export const orderRefund = (params, config = {custom: {auth: true}}) => http.post('/pet/order/refund', params, config)

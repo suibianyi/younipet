@@ -43,6 +43,7 @@
 		},
 		data() {
 			return {
+				orderNo: '',
 				goodsList: [
 					{
 						goodsImage: require('@/static/image/goods-image.png'),
@@ -54,10 +55,21 @@
 				],
 			};
 		},
+		onLoad(options) {
+			console.log('退款页面1收到的', options.detail)
+			const temp = JSON.parse(options.detail)
+			this.goodsList = temp.goodsList
+			this.orderNo = temp.orderNo
+		},
 		methods: {
 			toApplyReturnAfter (refundType) {
+				const data = {
+					orderNo:this.orderNo,
+					goodsList: this.goodsList,
+					refundType: refundType
+				}
 				uni.navigateTo({
-					url: '/pages/selectAfterType/applyAfterReturn/applyAfterReturn?refundType=' + refundType
+					url: '/pages/selectAfterType/applyAfterReturn/applyAfterReturn?detail=' + JSON.stringify(data)
 				})
 			}
 		}

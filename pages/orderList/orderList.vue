@@ -220,7 +220,7 @@
 					return [2]
 					break;
 					case 4:
-					return []
+					return [10]
 					break;
 					default :
 					return []
@@ -244,6 +244,10 @@
 					temp.realPrice= item.amount
 					temp.statusName=item.status
 					temp.createdTime= item.createdTime
+					temp.expressCode=item.expressCode
+					temp.express=item.express
+					temp.postNo=item.postNo
+					temp.qrCode = item.qrCode
 					temp.restTime= 30*60*1000-((new Date()).getTime()-(new Date(item.createdTime)).getTime())
 					temp.status=this.status
 					temp.goodsList = []
@@ -316,7 +320,7 @@
 			},
 			toLogisticsHitory (item) {
 				uni.navigateTo({
-					url: '/pages/logisticsHitory/logisticsHitory'
+					url: '/pages/logisticsHitory/logisticsHitory?detail='+JSON.stringify(item)
 				})
 			}
 		}
