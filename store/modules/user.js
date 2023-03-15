@@ -12,6 +12,7 @@ const user = {
 			ynId: '547333',
 			vipExpress: '2022-05-01',
 			isVip: false,
+			vipType: '',
 			token: ''
 		},
 	},

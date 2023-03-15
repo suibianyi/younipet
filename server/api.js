@@ -109,3 +109,5 @@ export const orderReceive = (data) => http.get('/pet/order/receive', data)
 export const orderRefund = (params, config = {custom: {auth: true}}) => http.post('/pet/order/refund', params, config)
 // 撤销退款
 export const refundCancel = (params, config = {custom: {auth: true}}) => http.post('/pet/order/refundCancel', params, config)
+// 预创建订单
+export const preCreate = (params, config = {custom: {auth: true}}) => http.post('/pet/order/preCreate', params, config)

@@ -87,6 +87,7 @@
 									avatar: userInfo.avatar,
 									token: loginData.token,
 									isVip: Boolean(userInfo.isVip),
+									vipType: userInfo.vipType,
 									vipExpress: userInfo.vipExpress,
 									ynId: userInfo.yhId
 								})
@@ -97,6 +98,7 @@
 									avatar: userInfo.avatar,
 									token: loginData.token,
 									isVip: Boolean(userInfo.isVip),
+									vipType: userInfo.vipType,
 									vipExpress: userInfo.vipExpress,
 									ynId: userInfo.yhId
 								})

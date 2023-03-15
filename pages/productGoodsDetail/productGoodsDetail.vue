@@ -58,7 +58,7 @@
 						</view>
 					</button>
 				</view>
-				<navigator class="icon-item" hover-class="u-hover-class" url="/pages/storeIndex/storeIndex">
+				<navigator class="icon-item" hover-class="u-hover-class" :url="'/pages/storeIndex/storeIndex?id=' + storeData.storeId">
 					<view class="icon-container">
 						<image class="icon" src="@/static/image/store-icon.png" mode="widthFix"></image>
 					</view>

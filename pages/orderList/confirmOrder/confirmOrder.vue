@@ -130,7 +130,7 @@
 <script>
 	import SelectPopup from '@/components/SelectPopup/SelectPopup.vue';
 	import AppointmentSuccessPopup from '@/components/AppointmentSuccessPopup/AppointmentSuccessPopup.vue'
-	import{couponList,orderCreat,payWx,getAddressList} from '@/server/api.js'
+	import{couponList,orderCreat,payWx,getAddressList,preCreate} from '@/server/api.js'
 	export default {
 		components: {
 			SelectPopup,
@@ -191,7 +191,7 @@
 						}
 					],
 					totalPrice: '1111',
-					freight: '3',
+					freight: '0',
 					expireTime: 30 * 60 * 1000
 				},
 				chooseCoupon:'-1'
@@ -264,8 +264,23 @@
 				this.addressData.detail = addressList[0].address
 				this.$store.dispatch('setChooseAddress', addressList[0])
 			}
+			await this.getPreCreate()
+						
 		},
 		methods: {
+			async getPreCreate() {
+				const res1= await preCreate({
+					addressId: this.$store.getters.chooseAdress.id,
+					stockId: this.orderData.goodsList[0].id,
+					stockNum: 1,
+					type: 2,
+					buyType:this.buyType,
+					storeId:this.storeData.id,
+					userCouponId: this.orderData.couponId
+				})
+				console.log('预订单的钱是',res1)
+				this.orderData.totalPrice = res1[0].amount
+			},
 			toAddress () {
 				uni.navigateTo({
 					url: '/pages/person/address/address'
@@ -274,9 +289,10 @@
 			onSelectCoupon () {
 				this.$refs.selectDelieveryPopup.openPopup();
 			},
-			getSelectedCoupon (value) {
+			async getSelectedCoupon (value) {
 				console.log('选择的优惠券是',value)
 				this.orderData.couponId = value
+				await this.getPreCreate()
 			},
 			changePayMethods (payId) {
 				if (this.orderData.activePay === payId) return;

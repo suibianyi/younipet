@@ -27,7 +27,7 @@
 				<view class="other-info u-flex" v-if="userData.isVip">
 					<view class="vip-box">
 						<image class="vip-icon" src="@/static/image/index/vip-icon.png"></image>
-						<text>会员类型</text>
+						<text>{{userData.vipType}}</text>
 					</view>
 					<view class="express-time">
 						截止{{userData.vipExpress}}到期

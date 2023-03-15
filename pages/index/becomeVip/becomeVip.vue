@@ -13,7 +13,7 @@
 								{{userData.nickName}}
 							</view>
 							<view class="vip-box" v-if="userData.isVip">
-								<text>会员类型</text>
+								<text>{{userData.vipType}}</text>
 							</view>
 						</view>
 						<view class="u-font-22"  v-if="userData.isVip">
@@ -143,6 +143,7 @@
 							nickName: userInfo.nickname,
 							avatar: userInfo.avatar,
 							isVip: Boolean(userInfo.isVip),
+							vipType: userInfo.vipType,
 							vipExpress: userInfo.vipExpress,
 							ynId: userInfo.yhId
 						})
@@ -154,6 +155,7 @@
 							avatar: userInfo.avatar,
 							token: getUserInfo132.token,
 							isVip: Boolean(userInfo.isVip),
+							vipType: userInfo.vipType,
 							vipExpress: userInfo.vipExpress,
 							ynId: userInfo.yhId
 						})
