@@ -187,8 +187,9 @@
 					storeName: '门店昵称',
 					name: 'xxx昵称',
 					mobile: '15205009113',
-					petName: '宠物名称',
-					petGender: 'GG'
+					petName: '',
+					petGender: '',
+					orderId:''
 				},
 				serviceGoodsData:{
 					price:'',
@@ -278,6 +279,18 @@
 				this.showPetNameModal = false;
 			},
 			async onSubmit () {
+				if(this.formData.date=='') {
+					return uni.$u.toast('请选择日期');
+				} else if (this.formData.startTime=='') {
+					return uni.$u.toast('请选择时段');
+				} else if (this.formData.endTime=='') {
+					return uni.$u.toast('请选择时段');
+				} else if (this.formData.petName=='') {
+					return uni.$u.toast('请输入宠物名称');
+				} else if (this.formData.petGender=='') {
+					return uni.$u.toast('请选择宠物性别');
+				}
+				
 				const res1= await orderCreat({
 						productId: this.id,
 						serviceBook:{
@@ -309,26 +322,27 @@
 							uni.showToast({
 								title: "支付成功"
 							})
+							this.formData.orderId = res1;
 							this.$refs.appointmentSuccessPopup.showPopup = true;
-							uni.navigateTo({
-								url: 'pages/orderList/orderList'
-							})
+							// uni.navigateTo({
+							// 	url: 'pages/orderList/orderList'
+							// })
 						},
 						fail: (res) => {
 							uni.showToast({
 								icon: 'error',
 								title: "支付失败"
 							})
-							this.$refs.appointmentSuccessPopup.showPopup = true;
+							// this.$refs.appointmentSuccessPopup.showPopup = true;
 							uni.navigateTo({
-								url: 'pages/orderList/orderList'
+								url: '/pages/orderList/orderList'
 							})
 						},
 						complete: () => {
 							this.loading = false;
-							uni.navigateTo({
-								url: 'pages/orderList/orderList'
-							})
+							// uni.navigateTo({
+							// 	url: 'pages/orderList/orderList'
+							// })
 						}
 					})
 			}

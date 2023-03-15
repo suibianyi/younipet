@@ -4,7 +4,7 @@
 			预约成功
 		</view>
 		<view class="qrcode-image">
-			<image src="@/static/image/goods-image.png"></image>
+			<image :src="src"></image>
 		</view>
 		<u--form
 			labelPosition="left"
@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import { onLoad } from '../../uni_modules/uview-ui/libs/mixin/mixin';
+import { payDetail} from '@/server/api.js'
 	export default {
 		props: {
 			formData: {
@@ -51,9 +53,22 @@
 		data () {
 			return {
 				showPopup: false,
+				src:'',
 				popupStyle: {
 					width: '530rpx',
 					padding: '48rpx 32rpx 0 32rpx'
+				}
+			}
+		},
+		watch: {
+			formData: {
+				immediate: true,
+				async handler(n) {
+					console.log('获取的frodata', n)
+					if (n && n.orderId) {
+						const res = await payDetail({ custom: { auth: true }, params:{pid: n.orderId}})
+						this.src = res.qrCode
+					}
 				}
 			}
 		},
@@ -66,6 +81,9 @@
 			},
 			onSubmit () {
 				this.showPopup = false;
+				uni.navigateTo({
+					url: '/pages//person/historyActive/historyActive'
+				})
 			}
 		}
 	}

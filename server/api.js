@@ -73,6 +73,8 @@ export const orderList = (params, config = {custom: {auth: true}}) => http.post(
 // 获取订单详情
 export const orderDetail = (data) => http.get('/pet/order/detail', data)
 
+// 获取服务订单号订单详情
+export const payDetail = (data) => http.get('/pet/order/pay/detail', data)
 
 // 获取购物车列表
 export const getCartList = (data) => http.get('/pet/cart/list', data)
@@ -105,3 +107,5 @@ export const expressTrace = (data) => http.get('/pet/order/expressTrace', data)
 export const orderReceive = (data) => http.get('/pet/order/receive', data)
 // 退款
 export const orderRefund = (params, config = {custom: {auth: true}}) => http.post('/pet/order/refund', params, config)
+// 撤销退款
+export const refundCancel = (params, config = {custom: {auth: true}}) => http.post('/pet/order/refundCancel', params, config)

@@ -110,12 +110,14 @@
 
 <script>
 	import OrderGoodsItem from '@/components/OrderGoodsItem/OrderGoodsItem.vue'
+	import { orderDetail, refundCancel } from '@/server/api.js'
 	export default {
 		components: {
 			OrderGoodsItem
 		},
 		data() {
 			return {
+				orderId:'',
 				returnDetail: {
 					step: 1,
 					logisticsCompany: '韵达快递',
@@ -142,6 +144,58 @@
 				}
 			};
 		},
+		async onLoad (options) {
+			// 目前做效果，后面转成传入id获取详情,status可以删掉
+			const { orderNo } = options;
+			console.log('获取的ID', options)
+			const res = await orderDetail({ custom: { auth: true }, params:{id: orderNo}})
+			if (res&&res.address) {
+				this.addressData ={
+					name: res.address.name,
+					mobile: res.address.phone,
+					address: `${res.address.provinceName}${res.address.cityName}${res.address.areaName}`,
+					detail: res.address.address
+				}
+			}
+			if(res.type ==1) {
+				this.status =3
+			} else {
+				this.status =4
+			}
+			if (res&&res.store) {
+				this.storeData ={
+					storeName: res.store.storeName,
+					storeAddress: res.store.storeLocation
+				}
+			}
+			this.returnDetail.orderNo=res.id
+			this.returnDetail.exchangeNo=res.pid
+			this.returnDetail.createTime=res.createTime
+			this.returnDetail.payTime=res.payTime
+			this.returnDetail.deliverTime=res.shipTime
+			this.returnDetail.expressCode=res.expressCode
+			// this.returnDetail.logisticsCompany=res.express
+			// this.returnDetail.logisticsNumber=res.postNo
+			this.returnDetail.createTime=res.refundTime
+			this.returnDetail.logisticsTime=res.shipTime
+			this.returnDetail.notes=res.rmk
+			if (res&& res.detailList) {
+				this.returnDetail.goodsList =[]
+				console.log('123456798',res.detailList)
+				for(const item of res.detailList){
+					this.returnDetail.goodsList.push({
+						goodsImage: item.img,
+						goodsTitle: item.productName,
+						goodsSpec: (item.secondName1?item.secondName1:'')+(item.secondName2?item.secondName2:'')+(item.secondName3?item.secondName3:''),
+						price: '165',
+						count: item.num
+					})
+				}
+			}
+			// this.status = status;
+			this.orderId = orderId;
+			
+		},
 		methods: {
 			onCopy () {
 				uni.setClipboardData({data: '11111'});
@@ -151,12 +205,15 @@
 					url: '/pages/afterSalesList/writeLogistics/writeLogistics'
 				})
 			},
-			onRevokeApply () {
+			async onRevokeApply () {
 				uni.showModal({
 					title: '提示',
 					content: '确定撤销申请吗',
-					success: (res) => {
+					success: async (res) => {
 						if (res.confirm) {
+							await refundCancel({
+								orderId: this.orderId
+							})
 							
 						}
 					}

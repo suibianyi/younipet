@@ -249,7 +249,11 @@
 					temp.postNo=item.postNo
 					temp.qrCode = item.qrCode
 					temp.restTime= 30*60*1000-((new Date()).getTime()-(new Date(item.createdTime)).getTime())
-					temp.status=this.status
+					if(item.st==10) {
+						temp.status=4
+					} else {	
+						temp.status=item.st +1
+					}
 					temp.goodsList = []
 					if(item.detailList) {
 						for(const item2 of item.detailList) {
@@ -273,7 +277,13 @@
 					3: ['logistics', 'receipt'],
 					4: ['code']
 				}
-				return statusBtnMap[status].includes(key)
+				
+				console.log('123456789', status)
+				if (status >4) {
+					return false
+				} else {
+					return statusBtnMap[status].includes(key)
+				}
 			},
 			notion() {
 				uni.showToast({
@@ -282,7 +292,7 @@
 			},
 			async pay(item) {
 				console.log('pay',item)
-				const preDate = await payWx({ custom: { auth: true }, params:{orderId: item.id, type:'pd',isAll:false}})
+				const preDate = await payWx({ custom: { auth: true }, params:{orderId: item.id, type:'pd'}})
 					console.log("preDate-----------------------------------------", preDate);
 					uni.requestPayment({
 						timeStamp: `${preDate.timeStamp}`,
